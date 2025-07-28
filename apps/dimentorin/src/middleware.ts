@@ -10,13 +10,13 @@ const mappingPublicRoutes = [
   '/auth/login',
   '/auth/forgot',
   '/auth/forgot/otp',
-  '/auth/register', 
+  '/auth/register',
   '/auth/register/otp',
   '/auth/register/success',
   '/auth/new-password',
   '/auth/register-mentor',
   '/auth/register-mentor/pending',
-  '/auth/register-mentor/success'
+  '/auth/register-mentor/success',
 ];
 
 const mappingRoutePermissions = [
@@ -96,7 +96,8 @@ export const middleware = async ({ request }: LoaderFunctionArgs) => {
     return null;
   }
 
-  if (!session) return redirect('/auth/login');
+  // TODO: Uncomment this after development
+  // if (!session) return redirect('/auth/login');
 
   const matchedRoute = mappingRoutePermissions.find(
     (route) => route.path === pathname
