@@ -20,53 +20,49 @@ export const DashboardSidebar: FC = (): ReactElement => {
       <div className="flex flex-col gap-8 justify-between items-center">
         <img src="/logos/simple.svg" alt="IMPHNEN Logo" className="w-[150px]" />
 
-        <nav className="flex flex-col gap-4 w-full">
+        <nav className="flex flex-col gap-2 w-full">
           <Link
             to="/dashboard"
-            className={`flex items-center justify-items-start gap-3 px-[8px] py-[10px] ${
-              isActive('/dashboard')
-                ? 'bg-primary-500 text-white rounded-md'
-                : 'text-gray-700 hover:bg-gray-100'
-            }`}
+            className={`flex items-center justify-items-start gap-3 px-[8px] py-[10px] ${isActive('/dashboard')
+              ? 'bg-primary-500 text-white rounded-md'
+              : 'text-neutral-400 hover:bg-gray-100'
+              }`}
           >
             <AppstoreOutlined className="text-[20px]" />
-            <span className="text-p3 font-medium">Dashboard</span>
+            <span className="text-label1 font-medium">Dashboard</span>
           </Link>
 
           <Link
             to="/roadmap-discovery"
-            className={`flex items-center justify-items-start gap-3 px-[8px] py-[10px] ${
-              isActive('/roadmap-discovery')
-                ? 'bg-primary-500 text-white rounded-md'
-                : 'text-gray-700 hover:bg-gray-100'
-            }`}
+            className={`flex items-center justify-items-start gap-3 px-[8px] py-[10px] ${isActive('/roadmap-discovery')
+              ? 'bg-primary-500 text-white rounded-md'
+              : 'text-neutral-400 hover:bg-gray-100'
+              }`}
           >
             <FileSearchOutlined className="text-[20px]" />
-            <span className="text-p3 font-medium">Roadmap Discovery</span>
+            <span className="text-label1 font-medium">Roadmap Discovery</span>
           </Link>
 
           <Link
             to="/learning-path"
-            className={`flex items-center justify-items-start gap-3 px-[8px] py-[10px] ${
-              isActive('/learning-path')
-                ? 'bg-primary-500 text-white rounded-md'
-                : 'text-gray-700 hover:bg-gray-100'
-            }`}
+            className={`flex items-center justify-items-start gap-3 px-[8px] py-[10px] ${isActive('/learning-path')
+              ? 'bg-primary-500 text-white rounded-md'
+              : 'text-neutral-400 hover:bg-gray-100'
+              }`}
           >
             <BookOutlined className="text-[20px]" />
-            <span className="text-p3 font-medium">Learning Path</span>
+            <span className="text-label1 font-medium">Learning Path</span>
           </Link>
 
           <Link
-            to="/mentoring"
-            className={`flex items-center justify-items-start gap-3 px-[8px] py-[10px] ${
-              isActive('/mentoring')
-                ? 'bg-primary-500 text-white rounded-md'
-                : 'text-gray-700 hover:bg-gray-100'
-            }`}
+            to="/dashboard-mentoring"
+            className={`flex items-center justify-items-start gap-3 px-[8px] py-[10px] ${isActive('/mentoring')
+              ? 'bg-primary-500 text-white rounded-md'
+              : 'text-neutral-400 hover:bg-gray-100'
+              }`}
           >
             <MessageOutlined className="text-[20px]" />
-            <span className="text-p3 font-medium">Mentoring</span>
+            <span className="text-label1 font-medium">Mentoring</span>
           </Link>
         </nav>
       </div>
@@ -76,10 +72,10 @@ export const DashboardSidebar: FC = (): ReactElement => {
         <Button
           onClick={signOut}
           variant="text"
-          className="items-start justify-start gap-3 px-[8px] py-[10px] text-gray-700 hover:text-red-500 transition-colors w-full"
+          className="items-start justify-start gap-3 px-[8px] py-[10px] text-neutral-400 hover:text-red-500 transition-colors w-full"
         >
           <LogoutOutlined className="text-[20px]" />
-          <span className="text-p3 font-medium">Log Out</span>
+          <span className="text-label1 font-medium">Log Out</span>
         </Button>
       </div>
     </aside>
