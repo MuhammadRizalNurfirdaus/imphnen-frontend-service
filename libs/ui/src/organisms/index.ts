@@ -6,3 +6,4 @@ export * from './datatable';
 export * from './filter';
 export * from './controlled-field';
 export * from './dashboard-sidebar';
+export * from './navbar-dashboard-user';
