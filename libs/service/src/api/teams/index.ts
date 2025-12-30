@@ -34,12 +34,12 @@ export const getTeamById = async (teamId: string) => {
 };
 
 export const createTeam = async (data: TCreateTeamRequest) => {
-  const response = await api.post<TTeamDetailResponse>(TEAMS_BASE_URL, data);
+  const response = await api.post<TTeamDetailResponse>(`${TEAMS_BASE_URL}/create`, data);
   return response.data;
 };
 
 export const updateTeam = async (teamId: string, data: TUpdateTeamRequest) => {
-  const response = await api.put<TTeamDetailResponse>(`${TEAMS_BASE_URL}/${teamId}`, data);
+  const response = await api.put<TTeamDetailResponse>(`${TEAMS_BASE_URL}/update/${teamId}`, data);
   return response.data;
 };
 

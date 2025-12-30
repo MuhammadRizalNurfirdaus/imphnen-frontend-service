@@ -28,8 +28,9 @@ export const GoogleCallbackPage: FC = (): ReactElement => {
       }
 
       try {
+        const redirectUri = `${window.location.origin}/auth/google-callback`;
         googleCallback(
-          { code, state },
+          { code, state, redirectUri },
           {
             onSuccess: (response) => {
               if (response.token && response.user) {

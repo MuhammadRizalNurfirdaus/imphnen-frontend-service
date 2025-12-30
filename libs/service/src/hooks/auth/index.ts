@@ -360,29 +360,109 @@ export const usePostRegister = () => {
   });
 };
 
-/** @deprecated Not needed with new backend */
+/** Verify email with OTP */
 export const usePostVerifyEmail = () => {
   return useMutation({
-    mutationFn: async () => {
-      throw new Error('Email verification not required with new backend');
+    mutationFn: async (data: { email: string; otp: string }) => {
+      const response = await hackathonApi.post<HackathonApiResponse<MessageResponse>>(
+        '/auth/verify-email',
+        { email: data.email, otp: parseInt(data.otp) }
+      );
+      return response.data.data;
     },
   });
 };
 
-/** @deprecated Not needed with new backend */
+/** Send OTP to email */
 export const usePostSendOtp = () => {
   return useMutation({
-    mutationFn: async () => {
-      throw new Error('OTP not required with new backend');
+    mutationFn: async (data: { email: string }) => {
+      const response = await hackathonApi.post<HackathonApiResponse<MessageResponse>>(
+        '/auth/send-otp',
+        data
+      );
+      return response.data.data;
     },
   });
 };
 
-/** @deprecated Use useGitHubCallback instead */
-export const useGoogleCallback = () => {
+/** Forgot password - send reset link */
+export const useForgotPasswordAction = () => {
   return useMutation({
-    mutationFn: async () => {
-      throw new Error('Google OAuth not supported. Use GitHub OAuth instead.');
+    mutationFn: async (data: { email: string }) => {
+      const response = await hackathonApi.post<HackathonApiResponse<MessageResponse>>(
+        '/auth/forgot',
+        data
+      );
+      return response.data.data;
     },
   });
 };
+
+/** Set new password */
+export const useNewPassword = () => {
+  return useMutation({
+    mutationFn: async (data: { access_token: string; new_password: string }) => {
+      const response = await hackathonApi.post<HackathonApiResponse<MessageResponse>>(
+        '/auth/new-password',
+        data
+      );
+      return response.data.data;
+    },
+  });
+};
+
+/** Google OAuth callback - exchange code for tokens */
+export const useGoogleCallback = () => {
+  const { setSession } = useAuthStore();
+
+  return useMutation({
+    mutationFn: async ({
+      code,
+      state,
+      redirectUri,
+    }: {
+      code: string;
+      state: string;
+      redirectUri: string;
+    }) => {
+      const response = await hackathonApi.get<HackathonApiResponse<AuthResponse>>(
+        `/auth/google/callback`,
+        {
+          params: {
+            code,
+            state,
+            redirect_uri: redirectUri,
+          },
+        }
+      );
+      return response.data.data;
+    },
+    onSuccess: (data) => {
+      setSession({
+        token: data.token,
+        user: {
+          id: data.user.id,
+          email: data.user.email,
+          fullname: data.user.fullname,
+          phone_number: data.user.phone_number || '',
+          avatar: data.user.avatar || '',
+          birthdate: data.user.birthdate || '',
+          gender: data.user.gender || '',
+          is_active: data.user.is_active,
+          location: data.user.location,
+          bio: data.user.bio,
+          skills: data.user.skills,
+          role: {
+            id: '',
+            name: 'user',
+            permissions: [],
+            created_at: '',
+            updated_at: '',
+          },
+        },
+      });
+    },
+  });
+};
+

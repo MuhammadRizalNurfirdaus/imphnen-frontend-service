@@ -1,9 +1,8 @@
 import axios from 'axios';
 import { useAuthStore } from '../hooks/auth';
 
-// Backoffice Backend API Base URL
-// In development, use proxy; in production, use full URL
-const BACKOFFICE_API_URL = 'https://api.hackathon.imphnen.dev/api/v1';
+// Backoffice Backend API Base URL - uses the same backend as main API
+const BACKOFFICE_API_URL = import.meta.env.VITE_API_URL || 'https://imphnentest.asepharyana.tech/v1';
 
 // Create axios instance for backoffice backend
 export const backofficeApi = axios.create({

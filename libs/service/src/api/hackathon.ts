@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { useAuthStore } from '../hooks/auth';
 
-// Hackathon Backend API Base URL
-const HACKATHON_API_URL = 'https://api.hackathon.imphnen.dev/api/v1';
+// Hackathon Backend API Base URL - uses the same backend as main API
+const HACKATHON_API_URL = import.meta.env.VITE_API_URL || 'https://imphnentest.asepharyana.tech/v1';
 
 // Create axios instance for hackathon backend
 export const hackathonApi = axios.create({

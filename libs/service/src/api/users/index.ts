@@ -83,7 +83,7 @@ export const userService: UserService = {
   },
 
   async updateUserById(id: string, data: UserUpdateRequestDto) {
-    const response = await api.put<ApiResponse<UserDetailResponseDto>>(`/users/${id}`, data);
+    const response = await api.put<ApiResponse<UserDetailResponseDto>>(`/users/update/${id}`, data);
     return response.data.data;
   },
 };

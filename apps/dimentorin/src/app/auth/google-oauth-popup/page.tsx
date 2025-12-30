@@ -46,12 +46,22 @@ export const GoogleOAuthPopupPage: FC = (): ReactElement => {
           throw new Error(`HTTP ${response.status}: ${response.statusText} - ${errorText}`);
         }
 
-        const data = await response.json();
+        const responseData = await response.json();
+
+        // Backend returns { data: { token, user } } wrapper
+        // Extract the actual data from wrapper
+        const data = responseData.data || responseData;
+
+        // Normalize the response to match expected format
+        const normalizedPayload = {
+          token: data.token,
+          user: data.user,
+        };
 
         window.opener?.postMessage(
           {
             type: 'GOOGLE_OAUTH_SUCCESS',
-            payload: data,
+            payload: normalizedPayload,
           },
           window.location.origin
         );

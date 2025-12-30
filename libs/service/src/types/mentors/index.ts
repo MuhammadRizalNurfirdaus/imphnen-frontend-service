@@ -87,3 +87,45 @@ export interface MentorUpdateRequestDto {
     period: string;
   }>;
 }
+
+export interface MentorRegisterRequestDto {
+  current_role: string;
+  current_company: string;
+  years_of_experience: number;
+  expertise: string[];
+  industries: string[];
+  languages: string[];
+  bio: string;
+  availability_commitment: string;
+  preferred_mentoring_formats: string[];
+  preferred_mentee_level: string[];
+  topics_of_interest: string[];
+  mentoring_rate_amount?: number | null;
+  linkedin_url?: string | null;
+  github_url?: string | null;
+  portfolio_url?: string | null;
+  cv_url?: string | null;
+  phone_for_verification?: string | null;
+  domicile?: string | null;
+  last_education?: string | null;
+  legal_name?: string | null;
+  gender?: string | null;
+}
+
+export interface MentorRegisterResponseDto {
+  id: string;
+  user_id: string;
+  status: string;
+  message: string;
+  created_at: string;
+}
+
+export interface MentorStatusResponseDto {
+  id: string;
+  user_id: string;
+  status: 'pending' | 'approved' | 'rejected' | 'inactive';
+  submitted_at: string;
+  reviewed_at?: string | null;
+  rejection_reason?: string | null;
+}
+

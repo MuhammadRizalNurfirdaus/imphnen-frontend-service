@@ -7,6 +7,10 @@ export * from './mentors';
 export * from './upload';
 export * from './hackathon';
 export * from './admin';
+export * from './teams';
+export * from './sessions';
+export * from './hackathons';
+export * from './notifications';
 
 // Common API response wrapper interface
 export interface ApiResponse<T> {
